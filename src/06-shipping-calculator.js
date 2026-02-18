@@ -5,21 +5,21 @@
  * shipping cost calculator. The cost depends on the package weight,
  * where it's going, and the order total.
  *
- * Domestic Shipping (country === "US"):
- *   - Weight up to 1 kg:   $5
- *   - Weight up to 5 kg:   $10
- *   - Weight over 5 kg:    $15
+ * Domestic Shipping (country === "US")
+ *   - Weight up to 1 kg   $5
+ *   - Weight up to 5 kg   $10
+ *   - Weight over 5 kg    $15
  *
- * International Shipping (any other country):
- *   - Weight up to 1 kg:   $15
- *   - Weight up to 5 kg:   $25
- *   - Weight over 5 kg:    $40
+ * International Shipping (any other country)
+ *   - Weight up to 1 kg   $15
+ *   - Weight up to 5 kg   $25
+ *   - Weight over 5 kg    $40
  *
- * Free Shipping:
+ * Free Shipping
  *   - Domestic orders over $50 get FREE shipping (return 0)
  *   - International orders over $100 get FREE shipping (return 0)
  *
- * Rules:
+ * Rules
  *   - If weight is 0 or negative, return -1
  *   - If orderTotal is negative, return -1
  *
@@ -30,4 +30,26 @@
  */
 export function calculateShipping(weight, country, orderTotal) {
   // Your code here
+  if(weight<=0 || orderTotal<0){
+    return -1
+  }else if (orderTotal>50 && country ==="US"){
+    return 0
+  }else if (orderTotal>100 && country !=="US"){
+    return 0
+  }
+  else if(country==="US"){
+   
+      if(weight<=1)return 5
+      if(weight<=5) return 10
+      if(weight>5) return 15
+    
+  }
+  else if(country!=="US"){
+   
+      if(weight<=1)return 15
+      if(weight<=5) return 25
+      if(weight>5) return 40
+    
+  }
+
 }
