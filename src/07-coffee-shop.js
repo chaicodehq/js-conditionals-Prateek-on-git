@@ -60,7 +60,7 @@ export function calculateCoffeePrice(size, type, extras = {}) {
 
 
   let total = extraco+sizepr+typer;
-  return Math.round(total*100)/100
+  return Math.round((extraco+sizepr+typer)*100)/100
 }
 
 
