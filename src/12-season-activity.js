@@ -12,14 +12,14 @@
  *   - September, October, November (9, 10, 11)   → "Autumn"
  *
  * Step 2 — Suggest an activity based on season AND temperature (°C):
- *   - Winter + temp < 0     → "skiing"
- *   - Winter + temp >= 0    → "ice skating"
- *   - Spring + temp > 20    → "hiking"
- *   - Spring + temp <= 20   → "museum visit"
- *   - Summer + temp > 35    → "swimming"
- *   - Summer + temp <= 35   → "cycling"
- *   - Autumn + temp > 15    → "nature walk"
- *   - Autumn + temp <= 15   → "reading at a cafe"
+ *   - Winter + temperature < 0     → "skiing"
+ *   - Winter + temperature >= 0    → "ice skating"
+ *   - Spring + temperature > 20    → "hiking"
+ *   - Spring + temperature <= 20   → "museum visit"
+ *   - Summer + temperature > 35    → "swimming"
+ *   - Summer + temperature <= 35   → "cycling"
+ *   - Autumn + temperature > 15    → "nature walk"
+ *   - Autumn + temperature <= 15   → "reading at a cafe"
  *
  * Return an object: { season: string, activity: string }
  *
@@ -32,4 +32,38 @@
  */
 export function getSeasonActivity(month, temperature) {
   // Your code here
+
+  if (month<1 || month>12){
+    return null
+  }
+
+  const config = {
+    Winter: {
+      months: [12, 1, 2],
+      activity: (t) => (t < 0 ? "skiing" : "ice skating")
+    },
+    Spring: {
+      months: [3, 4, 5],
+      activity: (t) => (t > 20 ? "hiking" : "museum visit")
+    },
+    Summer: {
+      months: [6, 7, 8],
+      activity: (t) => (t > 35 ? "swimming" : "cycling")
+    },
+    Autumn: {
+      months: [9, 10, 11],
+      activity: (t) => (t > 15 ? "nature walk" : "reading at a cafe")
+    }
+  };
+
+  const season = Object.keys(config).find(key =>
+    config[key].months.includes(month)
+  );
+
+  return {
+    season,
+    activity: config[season].activity(temperature)
+  };
+
+
 }
